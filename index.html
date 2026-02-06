@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sorry Sherpakodiya ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;overflow-x:hidden;overflow-y:auto;font-family:'Comic Sans MS','Poppins',sans-serif;background:linear-gradient(135deg,#ffdde1,#ee9ca7)}
+    .scene{position:relative;width:100%;min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column}
+    .cat{font-size:120px;animation:idle 2s infinite;position:relative}
+    .walk{animation:walk 3s linear forwards}
+    @keyframes walk{to{transform:translateY(120px)}}
+    .sing{animation:sing 0.18s infinite alternate}
+    @keyframes sing{0%{transform:scale(1)}100%{transform:scale(1.08)}}
+    @keyframes idle{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    .dance{animation:dance 0.5s infinite alternate}
+    @keyframes dance{0%{transform:translateX(-15px) rotate(-8deg)}100%{transform:translateX(15px) rotate(8deg)}}
+    .board{background:#fff;padding:15px 25px;border-radius:20px;margin-top:10px;box-shadow:0 10px 25px rgba(0,0,0,0.2);font-size:18px;color:#ff4d6d}
+    .buttons{margin-top:25px}
+    button{padding:14px 24px;font-size:16px;border:none;border-radius:30px;cursor:pointer;margin:0 8px}
+    #accept{background:#ff4d6d;color:#fff}
+    #reject{background:#ccc;position:absolute}
+    .message{margin-top:20px;font-size:18px;font-weight:bold;color:#ff4d6d;min-height:26px}
+    #loveLetter,#secretButtons,#bossGame{display:none}
+    #loveLetter{background:#fff0f5;padding:18px;border-radius:18px;margin-top:20px;max-width:340px;text-align:center}
+    #danceOverlay{position:fixed;inset:0;background:linear-gradient(135deg,#ff4d6d,#ffb3c6);display:none;z-index:9999;overflow:hidden}
+    .dance-cat{position:absolute;font-size:80px;animation:party 0.5s infinite alternate}
+    @keyframes party{0%{transform:scale(1) rotate(-10deg)}100%{transform:scale(1.25) rotate(10deg)}}
+    #hugCat{position:fixed;inset:0;display:none;justify-content:center;align-items:center;font-size:160px;z-index:10000}
+    .floatText{position:fixed;font-size:22px;color:white;animation:floatText 4s linear forwards}
+    @keyframes floatText{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-250px)}}
+    #bossGame{background:white;padding:20px;border-radius:20px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.25)}
+    #midnight{position:fixed;inset:0;background:radial-gradient(circle,#1b1b3a,#000);color:white;display:none;align-items:center;justify-content:center;flex-direction:column;z-index:20000}
+  /* Mobile-friendly scroll support */
+@media (max-width: 768px){
+  .cat{font-size:90px}
+  #loveLetter{max-width:90vw}
+  button{font-size:15px;padding:12px 20px}
+}
+</style>
+</head>
+<body>
+
+<button id="globalBack" style="position:fixed;top:15px;left:15px;z-index:30000;padding:10px 16px;border:none;border-radius:20px;background:#ffffffaa;color:#333;cursor:pointer;font-size:14px">⬅ Chirkut Vapis Aa</button>
+
+<div class="scene">
+  <div id="cat" class="cat">🐱</div>
+  <div class="board">Sorry Sherpakodiya 🥺❤️</div>
+
+  <div class="buttons" id="mainBtns">
+    <button id="accept">Accept Apology 💖</button>
+    <button id="reject">Not Accept 😢</button>
+  </div>
+
+  <div class="message" id="message"></div>
+
+  <div id="bossGame">
+    <h3>Final Boss 😾</h3>
+    <p>Tap the heart 5 times to win</p>
+    <button id="bossBtn">❤️</button>
+  </div>
+
+  <div id="loveLetter">
+    <b>💌 Final Letter</b><br><br>
+    <p style="font-size:15px;color:#444;line-height:1.6;">Sofiya, jab tumne ye kaha ki tumhe mujhe samjhana pad raha hai ki tumhe loved kaise feel karvaun, toh sach kahun toh mujhe andar se bahut ajeeb aur bura feel hua. Mujhe kabhi laga nahi tha ki humare beech aisi naubat aayegi jahan tumhe ye sab maangna padega. Main dil se maafi mangta hoon ki jaane-anjaane mein maine tumhe neglect feel karvaya ya tumhe wo attention nahi di jiski tum haqdaar ho.
+Mera irada kabhi tumhe hurt karne ka nahi tha, par main samajh raha hoon ki mere intentions se zyada mere actions matter karte hain. Main tumhe promise karta hoon ki aage se tumhe kabhi ye shikayat ka mauka nahi milega. Main apni taraf se puri koshish karunga ki tumhe har din feel ho ki tum mere liye kitni special ho. Please mujhe ek mauka do apni galti sudhaarne ka. Main tumse bohot zyada pyaar karta hoon aur tumhe khush dekhna hi meri priority hai. I am really sorry, love.".<br><br><b>I am really sorry, love ❤️</b></p>
+  </div>
+
+  <div class="buttons" id="secretButtons">
+    <button id="backBtn" style="background:#ccc;color:#333">⬅ Chirkut Vapis Aa</button>
+    <button id="hugBtn" style="background:#ff4d6d;color:#fff">Hug 😽</button>
+    <button id="kissBtn" style="background:#ff85a2;color:#fff">Kiss 💋</button>
+  </div>
+</div>
+
+<div id="danceOverlay"></div>
+<div id="hugCat">😽🤍</div>
+<div id="midnight"><h1>🌙 Secret Ending</h1><p>You are my forever ❤️</p></div>
+
+<script>
+const accept=document.getElementById('accept');
+const reject=document.getElementById('reject');
+const cat=document.getElementById('cat');
+const message=document.getElementById('message');
+const hugCat=document.getElementById('hugCat');
+let bossHits=0;
+
+reject.onmouseover=moveReject;
+reject.onclick=moveReject;
+
+function moveReject(){cat.textContent='😿';reject.style.left=Math.random()*80+'vw';reject.style.top=Math.random()*80+'vh';message.textContent='Please accept sorry 🥺'}
+
+accept.onclick=()=>{
+  document.getElementById('mainBtns').style.display='none';
+  document.getElementById('bossGame').style.display='block';
+};
+
+document.getElementById('bossBtn').onclick=()=>{
+  bossHits++;
+  if(bossHits>=5){startApology();}
+};
+
+function startApology(){
+  document.getElementById('bossGame').style.display='none';
+  cat.textContent='😻';
+  cat.classList.add('walk');
+  setTimeout(()=>cat.classList.add('dance'),3000);
+  startDanceParty();
+  typeText('Sherpakodiya… I was scared to lose you 🥺❤️');
+  
+}
+
+function typeText(text){let i=0;message.textContent='';const t=setInterval(()=>{message.textContent+=text[i++];if(i>=text.length){clearInterval(t);document.getElementById('loveLetter').style.display='block';document.getElementById('secretButtons').style.display='block'}},50)}
+
+function startDanceParty(){const overlay=document.getElementById('danceOverlay');overlay.style.display='block';overlay.innerHTML='';for(let i=0;i<25;i++){const c=document.createElement('div');c.className='dance-cat';c.textContent=Math.random()>0.5?'🐱':'😹';c.style.left=Math.random()*100+'vw';c.style.top=Math.random()*100+'vh';overlay.appendChild(c)}floatingNames();setTimeout(()=>overlay.style.display='none',15000)}
+
+function floatingNames(){for(let i=0;i<15;i++){const t=document.createElement('div');t.className='floatText';t.textContent='I Love You Sherpakodiya ❤️';t.style.left=Math.random()*100+'vw';t.style.top='100vh';document.body.appendChild(t);setTimeout(()=>t.remove(),4000)}}
+
+document.getElementById('hugBtn').onclick=()=>{hugCat.style.display='flex';setTimeout(()=>hugCat.style.display='none',2000)}
+document.getElementById('kissBtn').onclick=()=>{document.getElementById('midnight').style.display='flex'}
+
+function resetAll(){
+  document.getElementById('midnight').style.display='none';
+  document.getElementById('danceOverlay').style.display='none';
+  document.getElementById('loveLetter').style.display='none';
+  document.getElementById('secretButtons').style.display='none';
+  document.getElementById('bossGame').style.display='none';
+  document.getElementById('mainBtns').style.display='block';
+  message.textContent='';
+  bossHits=0;
+  cat.className='cat';
+  cat.textContent='🐱';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.getElementById('backBtn').onclick=resetAll;
+document.getElementById('globalBack').onclick=resetAll;
+</script>
+</body>
+</html>
